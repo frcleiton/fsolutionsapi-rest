@@ -1,0 +1,24 @@
+
+apply plugin: 'ear'
+
+dependencies {
+	deploy project(path: ':fsolutions-war', configuration: 'archives')
+	deploy project(path: ':fsolutions-ejb')
+	earlib project(':fsolutions-core')
+	earlib project(':fsolutions-api')
+	earlib project(':fsolutions-ejb-client')
+}
+
+ear {
+	deploymentDescriptor {
+		def warName = project(':fsolutions-war').name
+		def warVersion = project(':fsolutions-war').version
+		def warFileName = warName + '-' + warVersion + '.war'
+		webModule(warFileName, 'fsolutions')
+
+		def ejbName = project(':fsolutions-ejb').name
+		def ejbVersion = project(':fsolutions-ejb').version
+		def ejbFileName = ejbName + '-' + ejbVersion + '.jar'
+		module(ejbFileName, 'ejb')
+	}
+}
