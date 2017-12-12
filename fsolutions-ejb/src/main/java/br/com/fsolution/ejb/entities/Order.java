@@ -24,8 +24,25 @@ public class Order {
 	
 	@Column(name="order_time", nullable=false)
 	@Temporal(TemporalType.TIMESTAMP)
-	public Date order_time;
-
+	private Date order_time;
+	
+	private Integer customer_id;
+	
+	@Column(name="date_completion")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date completion;
+	
+	@Column(name="date_delivered")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date delivered;
+	
+	private String obs;
+	
+	@Column(name="date_expected")
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date expected;
+	
+	
 	public Integer getId() {
 		return Id;
 	}
@@ -48,6 +65,46 @@ public class Order {
 
 	public void setOrder_time(Date order_time) {
 		this.order_time = order_time;
+	}
+
+	public Integer getCustomer_id() {
+		return customer_id;
+	}
+
+	public void setCustomer_id(Integer customer_id) {
+		this.customer_id = customer_id;
+	}
+
+	public Date getCompletion() {
+		return completion;
+	}
+
+	public void setCompletion(Date completion) {
+		this.completion = completion;
+	}
+
+	public Date getDelivered() {
+		return delivered;
+	}
+
+	public void setDelivered(Date delivered) {
+		this.delivered = delivered;
+	}
+
+	public String getObs() {
+		return obs;
+	}
+
+	public void setObs(String obs) {
+		this.obs = obs;
+	}
+
+	public Date getExpected() {
+		return expected;
+	}
+
+	public void setExpected(Date expected) {
+		this.expected = expected;
 	}
 	
 	

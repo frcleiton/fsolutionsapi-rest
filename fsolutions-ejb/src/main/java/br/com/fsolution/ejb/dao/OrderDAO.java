@@ -25,8 +25,14 @@ public class OrderDAO {
 	public void update(int id, String descriptionOrder) {
 		Order order = em.find(Order.class, id);
 		order.setDescription(descriptionOrder);
-		System.out.println(order.getDescription());
 		em.merge(order);
 	}
 	
+	public Order getOrderById(int id) {
+		return em.find(Order.class, id);
+	}
+	
+	public void remove(int id) {
+		em.remove(em.find(Order.class, id));
+	}
 }
