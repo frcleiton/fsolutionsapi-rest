@@ -53,4 +53,9 @@ public class FSolutionServiceImpl implements FSolutionService{
 		return Response.status(Response.Status.CREATED).build();
 	}
 
+	@Override
+	public String listAllCustomers() {
+		return customer.listAllCustomers();
+	}
+
 }

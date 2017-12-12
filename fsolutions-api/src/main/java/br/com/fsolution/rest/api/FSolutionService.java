@@ -28,6 +28,11 @@ public interface FSolutionService {
 			              );
 	
 	@GET
+	@Path("/customer/all")
+	@Produces(MediaType.APPLICATION_JSON)
+	String listAllCustomers();
+	
+	@GET
 	@Path("/order/all")
 	@Produces(MediaType.APPLICATION_JSON)
 	String listAllOrders();
