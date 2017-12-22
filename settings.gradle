@@ -1,1 +1,1 @@
-include "fsolutions-api", "fsolutions-core", "fsolutions-ear", "fsolutions-war", "fsolutions-ejb", "fsolutions-ejb-client"
+include "fsolutions-api", "fsolutions-core", "fsolutions-ear", "fsolutions-war", "fsolutions-ejb", "fsolutions-ejb-client", "fsolutions-common"

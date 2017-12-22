@@ -1,4 +1,3 @@
-
 subprojects {
 
 	apply plugin: 'java'
@@ -29,6 +28,6 @@ subprojects {
 		provided 'javax:javaee-api:7.0'
 		compile 'com.google.code.gson:gson:2.8.2'
 	}
-
+	
 	version = '0.1-SNAPSHOT'
 }

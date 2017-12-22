@@ -1,5 +1,5 @@
 package br.com.fsolution.ejb.interfaces;
 
-public interface OrderRemote extends Order {
+public interface OrderRemote extends OrderResource {
 
 }

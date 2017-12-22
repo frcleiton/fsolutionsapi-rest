@@ -64,4 +64,13 @@ public class OrderBean implements OrderRemote, OrderLocal {
 		dao.remove(idOrder);		
 	}
 
+	@Override
+	public void createNewOrder(br.com.fsolution.rest.common.Order _order) {
+		Order order = new Order();
+		order.setDescription(_order.getDescription());
+		order.setCustomer_id(_order.getCustomer_id());
+		order.setOrder_time(new Date());
+		dao.insert(order);
+	}
+
 }

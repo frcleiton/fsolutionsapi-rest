@@ -1,5 +1,5 @@
 package br.com.fsolution.ejb.interfaces;
 
-public interface OrderLocal extends Order {
+public interface OrderLocal extends OrderResource {
 
 }
