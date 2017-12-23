@@ -1,18 +1,16 @@
 package br.com.fsolution.ejb.beans;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Remote;
 import javax.ejb.Stateless;
-import javax.ws.rs.WebApplicationException;
 
 import com.google.gson.Gson;
 
 import br.com.fsolution.ejb.dao.OrderDAO;
+import br.com.fsolution.ejb.entities.Customer;
 import br.com.fsolution.ejb.entities.Order;
 import br.com.fsolution.ejb.interfaces.OrderLocal;
 import br.com.fsolution.ejb.interfaces.OrderRemote;
@@ -23,8 +21,6 @@ import br.com.fsolution.ejb.interfaces.OrderRemote;
 @Local(OrderLocal.class)
 public class OrderBean implements OrderRemote, OrderLocal {
 	
-	private SimpleDateFormat df = new SimpleDateFormat( "yyyy-MM-dd" );
-
 	@EJB
 	private OrderDAO dao;
 	
@@ -34,29 +30,23 @@ public class OrderBean implements OrderRemote, OrderLocal {
 	}
 
 	@Override
-	public void updateOrder(int idOrder, String descriptionOrder) {
-		dao.update(idOrder, descriptionOrder);			
+	public void updateOrder(br.com.fsolution.rest.common.Order _order) {
+		Customer customer = new Customer();
+		customer.setId(_order.getCustomer().getId());
+		
+		Order order = new Order();
+		order.setId(_order.getId());
+		order.setDescription(_order.getDescription());
+		order.setCustomer(customer);
+		order.setOrder_time(new Date());
+		order.setObs(_order.getObs());
+		order.setExpected(_order.getExpected());		
+		dao.update(order);			
 	}
 
 	@Override
 	public String getOrderById(int id) {
 		return new Gson().toJson(dao.getOrderById(id));
-	}
-
-	@Override
-	public void createNewOrder(String descOrder, int custId, String obsOrder, String dateExpOrder) {
-		Order order = new Order();
-		order.setDescription(descOrder);
-		order.setOrder_time(new Date());
-		order.setCustomer_id(custId);
-		order.setObs(obsOrder);
-        try {
-            Date date = df.parse(dateExpOrder);
-            order.setExpected(date);
-        } catch ( final ParseException ex ) {
-            throw new WebApplicationException( ex );
-        }
-		dao.insert(order);
 	}
 
 	@Override
@@ -66,10 +56,15 @@ public class OrderBean implements OrderRemote, OrderLocal {
 
 	@Override
 	public void createNewOrder(br.com.fsolution.rest.common.Order _order) {
+		Customer customer = new Customer();
+		customer.setId(_order.getCustomer().getId());
+		
 		Order order = new Order();
 		order.setDescription(_order.getDescription());
-		order.setCustomer_id(_order.getCustomer_id());
+		order.setCustomer(customer);
 		order.setOrder_time(new Date());
+		order.setObs(_order.getObs());
+		order.setExpected(_order.getExpected());
 		dao.insert(order);
 	}
 

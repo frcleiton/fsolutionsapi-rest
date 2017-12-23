@@ -1,4 +1,5 @@
 dependencies {
+	compile project(':fsolutions-common')
     compile project(':fsolutions-api')
 	compile project(':fsolutions-ejb-client')
 }

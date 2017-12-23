@@ -36,36 +36,27 @@ public interface FSolutionService {
 	String listAllCustomers();
 	
 	@GET
-	@Path("/order/all")
+	@Path("/orders")
 	@Produces(MediaType.APPLICATION_JSON)
 	String listAllOrders();
-	
-	@GET
-	@Path("/order/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	String getOrderById(@PathParam("id") int id);
-	
-	@POST
-	@Path("/order/add")
-	@Produces(MediaType.APPLICATION_JSON)
-	Response saveNewOrder(@FormParam("description") String description, 
-			              @FormParam("customer_id") int customer_id,
-			              @FormParam("obs") String obs,
-			              @FormParam("date_expected") String date_expected
-			              );
 	
 	@POST
 	@Path("/orders/")
 	@Consumes(MediaType.APPLICATION_JSON)
 	Response saveNewOrder(Order order);
+
+	@GET
+	@Path("/orders/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	String getOrderById(@PathParam("id") int id);
 	
 	@PUT
-	@Path("/order/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
-	String updateOrder(@PathParam("id") int id, @FormParam("description") String description);
+	@Path("/orders/")
+	@Consumes(MediaType.APPLICATION_JSON)
+	Response updateOrder(Order order);
 	
 	@DELETE
-	@Path("/order/{id}")
+	@Path("/orders/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
 	String deleteOrder(@PathParam("id") int id);
 	

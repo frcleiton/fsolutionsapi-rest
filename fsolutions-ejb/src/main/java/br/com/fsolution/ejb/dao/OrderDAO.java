@@ -22,9 +22,7 @@ public class OrderDAO {
 		return em.createQuery("from service_orders s", Order.class).getResultList();
 	}
 	
-	public void update(int id, String descriptionOrder) {
-		Order order = em.find(Order.class, id);
-		order.setDescription(descriptionOrder);
+	public void update(Order order) {
 		em.merge(order);
 	}
 	

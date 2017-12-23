@@ -7,6 +7,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -26,7 +28,9 @@ public class Order {
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date order_time;
 	
-	private Integer customer_id;
+	@JoinColumn(name = "customer_id", referencedColumnName = "Id")
+    @ManyToOne(optional = false)
+    private Customer customer;
 	
 	@Column(name="date_completion")
 	@Temporal(TemporalType.TIMESTAMP)
@@ -39,7 +43,7 @@ public class Order {
 	private String obs;
 	
 	@Column(name="date_expected")
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	private Date expected;
 	
 	
@@ -65,14 +69,6 @@ public class Order {
 
 	public void setOrder_time(Date order_time) {
 		this.order_time = order_time;
-	}
-
-	public Integer getCustomer_id() {
-		return customer_id;
-	}
-
-	public void setCustomer_id(Integer customer_id) {
-		this.customer_id = customer_id;
 	}
 
 	public Date getCompletion() {
@@ -107,6 +103,13 @@ public class Order {
 		this.expected = expected;
 	}
 	
+	public Customer getCustomer() {
+		return customer;
+	}
+
+	public void setCustomer(Customer customer) {
+		this.customer = customer;
+	}
 	
 	
 }

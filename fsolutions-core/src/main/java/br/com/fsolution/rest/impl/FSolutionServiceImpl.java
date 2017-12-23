@@ -25,20 +25,14 @@ public class FSolutionServiceImpl implements FSolutionService{
 	}
 	
 	@Override
-	public String updateOrder(int id, String description) {
-		orderResource.updateOrder(id, description);
-		return "{\"Message\": \"Success\"}";
+	public Response updateOrder(Order order) {
+		orderResource.updateOrder(order);
+		return Response.status(Response.Status.OK).build();
 	}
 
 	@Override
 	public String getOrderById(int id) {
 		return orderResource.getOrderById(id);
-	}
-
-	@Override
-	public Response saveNewOrder(String description, int customer_id, String obs, String date_expected) {
-		orderResource.createNewOrder(description, customer_id, obs, date_expected);
-		return Response.status(Response.Status.CREATED).build();
 	}
 
 	@Override
